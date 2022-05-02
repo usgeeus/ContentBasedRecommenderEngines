@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>스마트 도서관 관리 시스템 메인 창</title>
+    <meta charset="utf-8">
+    <style>
+    body, html {
+      height:100%;
+      margin:0;
+    }
+    body {
+      background-color: #F0EDE5;
+    }
+      .menubar {
+        overflow: hidden;
+        background-color: #84898C;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+      }
+      .menubar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+      .menubar a:hover {
+        background-color: #B5C7D3;
+        color: #84898C;
+      }
+      .main {
+        padding-top: 50px;
+      }
+      img {
+        position: fixed;
+        float:left;
+        width:50%;
+        height: 100%;
+      }
+    h1 {
+      text-align:center;
+      padding-top: 24px;
+      color: #A58D7F;
+      border-bottom: 2px solid '#F5B895';
+    }
+    .description {
+      position: fixed;
+      padding-left:50%;
+      padding-right:30px;
+      margin-left: 50px;
+      margin-right: 20px;
+    }
+    p {
+      color:#84898C;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="menubar">
+      <a href="main.html">Main</a>
+      <a href="equipment_management.html">Equip-Mgt</a>
+      <a href="book_management.html">Book-Mgt</a>
+      <a href="reserve_loan_management.html">Reserve-Mgt</a>
+    </div>
+    <div class="main">
+      <img src="books.jpg">
+      <div class="description">
+      <h1>스마트 도서관 관리 시스템</h1>
+      <p>
+        이 시스템은 효율적인 스마트 도서관 운영을 위해 개발되었습니다.<br><br>
+        Equip-Mgt: 장비 관리를 위한 창입니다. 스마트 도서관 별로 비치된 도서 수, 비치 가능한 도서 수를 파악할 수 있습니다.<br><br>
+        Book-Mgt: 도서 관리를 위한 창입니다. 스마트 도서관을 선택하면 장르 별 비치된 도서 수를 막대그래프 형태로 보여줍니다. 또한 비치된 전체 도서를 테이블 형태로 볼 수 있습니다.<br><br>
+        Reserve-Mgt: 예약 관리를 위한 창입니다. 사용자는 원하는 도서가 스마트 도서관에 없을 시 예약 신청을 할 수 있으며 1인 당 3권까지 신청이 제한됩니다. 신청된 도서별로 함께 대출될 가능성이 높은 도서를 1순위부터 10순위까지 보여줍니다.<br>
+
+      </p>
+    </div>
+  </div>
+  </body>
+</html>

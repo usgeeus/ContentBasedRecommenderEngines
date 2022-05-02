@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>스마트 도서관 관리 시스템 메인 창</title>
+    <meta charset="utf-8"  content="width=device-width, initial-scale=1">
+    <style>
+    body, html {
+      height:100%;
+      margin:0;
+
+    }
+    body {
+      background-color: #F0EDE5;
+    }
+      .menubar {
+        overflow: hidden;
+        background-color: #84898C;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+      }
+      .menubar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+      .menubar a:hover {
+        background-color: #B5C7D3;
+        color: #84898C;
+      }
+      .main {
+        padding-top: 50px;
+      }
+      h1 {
+        text-align:left;
+        padding-top: 24px;
+        margin-left: 15px;
+        color: #A58D7F;
+        border-bottom: 2px solid '#F5B895';
+      }
+      .state {
+
+        width:100%;
+      }
+      .small-state  {
+        padding-top: 50px;
+        width:100%;
+        height:150px;
+      }
+      .cpu-state {
+        display: inline-block;
+        width:250px;
+
+        margin-left:100px;
+        margin-right:0px;
+        background-color: #658DC6;
+      }
+      .reader-machine-state {
+        display: inline-block;
+        width:250px;
+
+        margin-left: 20px;
+        background-color:#84898C;
+      }
+      .network-state {
+        display: inline-block;
+        width:250px;
+
+        margin-left: 20px;
+        background-color: #A58D7F;
+      }
+      .printer-state {
+        display: inline-block;
+        width:250px;
+
+        margin-left: 20px;
+        background-color:#F5B895;
+      }
+      .big-state {
+        padding-top: 40px;
+        width:100%;
+        height:150px;
+      }
+      #remain-book-state {
+        display: inline-block;
+
+        width:500px;
+        height:150px;
+        margin-left: 110px;
+        margin-right: 50px;
+        margin-bottom:50px;
+        background-color:#F2D6AE;
+      }
+      #possible-book-state {
+        display: inline-block;
+
+        width:500px;
+        height:150px;
+        margin-right: 50px;
+        margin-bottom:50px;
+        background-color:#F2D6AE;
+      }
+      h2 {
+        margin-top: 20px;
+        text-align: center;
+      }
+      .smart-library-id {
+        float: center;
+        padding: 8px 10px;
+        margin-left:495px;
+        margin-bottom: 10px;
+      }
+      .state p {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="menubar">
+      <a href="main.html">Main</a>
+      <a href="equipment_management.html">Equip-Mgt</a>
+      <a href="book_management.html">Book-Mgt</a>
+      <a href="reserve_loan_management.html">Reserve-Mgt</a>
+    </div>
+
+    <div class="main">
+      <h1>장비 관리</h1>
+    <div class="select-library">
+          <select class="smart-library-id" id = "library_id" name="library-id" onchange="show_data(this.value);">
+            <option value="0" selected>도서관 선택</option>
+            <option id = 'l-id' value="1">1. 충정로역사점</option>
+            <option id = 'l-id' value="2" >2. 중림동주민센터점</option>
+            <option id = 'l-id' value="3" >3. 서울시교육청 남산도서관점</option>
+            <option id = 'l-id' value="4" >4. 금호역사점</option>
+            <option id = 'l-id' value="5" >5. 옥수역사점</option>
+            <option id = 'l-id' value="6" >6. 상왕십리역사점</option>
+            <option id = 'l-id' value="7" >7. 광진정보도서관점</option>
+            <option id = 'l-id' value="8" >8. 망우역사점</option>
+            <option id = 'l-id' value="9" >9. 용마역사점</option>
+            <option id = 'l-id' value="10" >10. 중화역사점</option>
+            <option id = 'l-id' value="11" >11. 고려대역사점</option>
+            <option id = 'l-id' value="12" >12. 석계역사점</option>
+            <option id = 'l-id' value="13" >13. 노원구평생학습관점</option>
+            <option id = 'l-id' value="14" >14. 연신내역사점</option>
+            <option id = 'l-id' value="15" >15. 불광역사점</option>
+            <option id = 'l-id' value="16" >16. 역촌역사점</option>
+            <option id = 'l-id' value="17" >17. 아현역사점</option>
+            <option id = 'l-id' value="18" >18. 홍제역사점</option>
+            <option id = 'l-id' value="19" >19. 독립문역사점</option>
+            <option id = 'l-id' value="20" >20. 양천도서관점</option>
+            <option id = 'l-id' value="21" >21. 오목교역사점</option>
+            <option id = 'l-id' value="22" >22. 마곡역사점</option>
+            <option id = 'l-id' value="23" >23. 까치산역사점</option>
+            <option id = 'l-id' value="24" >24. 우장산역사점</option>
+            <option id = 'l-id' value="25" >25. 강서구청 휴게쉼터점</option>
+            <option id = 'l-id' value="26" >26. 천왕역사점</option>
+            <option id = 'l-id' value="27" >27. 신도림역사점</option>
+            <option id = 'l-id' value="28" >28. 개봉역사점</option>
+            <option id = 'l-id' value="29" >29. 여의도역사점</option>
+            <option id = 'l-id' value="30" >30. 영동포 제1 스포츠센터</option>
+            <option id = 'l-id' value="31" >31. 영동포 제2 스포츠센터</option>
+            <option id = 'l-id' value="32" >32. 신대방삼거리역사점</option>
+            <option id = 'l-id' value="33" >33. 총신대입구역사점</option>
+            <option id = 'l-id' value="34" >34. 장승배기역사점</option>
+            <option id = 'l-id' value="35" >35. 노들역사점</option>
+            <option id = 'l-id' value="36" >36. 신림역사점</option>
+            <option id = 'l-id' value="37" >37. 내방역사점</option>
+            <option id = 'l-id' value="38" >38. 양재역사점</option>
+            <option id = 'l-id' value="39" >39. 강남구청역사점</option>
+            <option id = 'l-id' value="40" >40. 논현1동 주민센터점</option>
+            <option id = 'l-id' value="41" >41. 삼성2동 주민센터점</option>
+            <option id = 'l-id' value="42" >42. 청담역사점</option>
+            <option id = 'l-id' value="43" >43. 잠실나루역사점</option>
+            <option id = 'l-id' value="44" >44. 방이역사점</option>
+          </select>
+    </div>
+      <div class="state">
+      <div class="small-state">
+      <div class="cpu-state">
+        <h2>정상</h2>
+        <p>CPU/RAM</p>
+      </div>
+      <div class="reader-machine-state" >
+        <h2>정상</h2>
+        <p>리더기 상태</p>
+      </div>
+      <div class="network-state">
+        <h2>정상</h2>
+        <p>네트워크</p>
+      </div>
+      <div class="printer-state">
+        <h2>정상</h2>
+        <p>프린터</p>
+      </div>
+</div>
+<div class="big-state">
+      <div id="remain-book-state" ><p>보유 도서</p></div>
+      <div id="possible-book-state"><p>비치 가능 도서</p></div>
+</div>
+</div>
+  </div>
+  <script type="text/javascript">
+  async function show_data (id) {
+
+  const result = await fetch("http://ec2-13-124-1-210.ap-northeast-2.compute.amazonaws.com/smtLibrs/" + id + "?analysisInfoYN=Y"
+  ).then((response) => response.json());
+
+  const maxNumOfBooks = result.maxNumOfBooks;
+
+  let totNumOfBooks = 0;
+  for(let i = 0; i < 10; i++){
+      totNumOfBooks += result.analysisInfo[i]["count"];
+  }
+  console.log(totNumOfBooks);
+  var html1 = "";
+  var html2 = "";
+  html1 += '<h2>' + totNumOfBooks + '권</h2><p>보유 도서</p>';
+  html2 +=  '<h2>' + (maxNumOfBooks - totNumOfBooks) + '권</h2><p>비치 가능 도서</p>';
+  document.getElementById('remain-book-state').innerHTML = html1;
+  document.getElementById('possible-book-state').innerHTML = html2;
+};
+  </script>
+  </body>
+</html>

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>스마트 도서관 관리 시스템 예약 관리</title>
+    <meta charset="utf-8">
+    <style>
+    body, html {
+      height:100%;
+      margin:0;
+    }
+    body {
+      background-color: #F0EDE5;
+    }
+      .menubar {
+        overflow: hidden;
+        background-color: #84898C;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+      }
+      .menubar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+      .menubar a:hover {
+        background-color: #B5C7D3;
+        color: #84898C;
+      }
+      .main {
+        padding-top: 50px;
+      }
+
+      h1 {
+        text-align:center;
+        padding-top: 24px;
+        margin-left: 15px;
+        color: #A58D7F;
+        border-bottom: 2px solid '#F5B895';
+      }
+      h2 {
+        text-align:left;
+        padding-left: 15px;
+        margin: 0;
+        color: #84898C;
+      }
+      #reserve-app {
+        width: 100%;
+        text-align: center;
+        table-layout: fixed;
+        text-overflow: ellipsis;
+        overflow:hidden;
+        white-space: nowrap;
+      }
+        #t1-col {
+        margin-top:15px;
+        width: 100%;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: #A58D7F;
+        color: #F0EDE5;
+      }
+      #reserve-app tr {
+        display: block;
+        width: 1264px;
+      }
+      #reserve-app #t1-col {
+        display: block;
+        width: 1264px;
+      }
+      #reserve-app tbody {
+        color: #48494B;
+      }
+      #reserve-app td.library_id {
+      width:130px;
+      }
+      #reserve-app td.bookname {
+      width:660px;
+      }
+      #reserve-app td.reserve-day {
+        width:120px;
+      }
+    #reserve-app  td.reserver-id{
+        width: 130px;
+      }
+    #reserve-app  td.reserver_name {
+        width:130px;
+      }
+    #reserve-app  td.state {
+        width:70px;
+      }
+
+      #reserve-mgt {
+        width: 1264px;
+        text-align: center;
+        table-layout: fixed;
+        text-overflow: ellipsis;
+        overflow:hidden;
+        white-space: nowrap;
+      }
+        #t2-col {
+        margin-top:15px;
+        width: 1264px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: #A58D7F;
+        color: #F0EDE5;
+      }
+      #reserve-mgt tr {
+        display: block;
+        width: 1264px;
+      }
+      #reserve-mgt #t2-col {
+        display: block;
+        width: 1264px;
+      }
+      #reserve-mgt tbody {
+        color: #48494B;
+      }
+      #reserve-mgt td.library_id {
+      width:10%;
+      }
+      #reserve-mgt td.isbn {
+      width:10%;
+      }
+      #reserve-mgt td.bookname {
+      width:50%;
+      }
+      #reserve-mgt td.authors {
+        width:5%;
+      }
+    #reserve-mgt  td.publisher{
+        width:8%;
+      }
+    #reserve-mgt  td.publish_year {
+        width:6%;
+      }
+    #reserve-mgt  td.KDC {
+        width:1%;
+      }
+    #reserve-mgt  td.description {
+        width:6%;
+      }
+      #reserve-mgt  td.check_books {
+        width:3%;
+      }
+
+
+      #recommend-book {
+        width: 1264px;
+        text-align: center;
+        table-layout: fixed;
+        text-overflow: ellipsis;
+        overflow:hidden;
+        white-space: nowrap;
+      }
+        #t3-col {
+        margin-top:15px;
+        width: 1264px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: #A58D7F;
+        color: #F0EDE5;
+      }
+      #recommend-book tr {
+        display: block;
+        width: 1264px;
+      }
+      #recommend-book #t3-col {
+        display: block;
+        width: 1264px;
+      }
+      #recommend-book tbody {
+        color: #48494B;
+      }
+      #recommend-book td.rank {
+        width:24px;
+      }
+      #recommend-book td.bookname {
+      width:650px;
+      }
+      #recommend-book td.authors {
+        width:240px;
+      }
+      #recommend-book td.publisher {
+        width:160px;
+      }
+      #recommend-book td.publish_year {
+        width:49px;
+      }
+      #recommend-book td.KDC {
+        width:35px;
+      }
+    #recommend-book  td.description{
+        width: 37px;
+      }
+    #recommend-book  td.check_books {
+        width:37px;
+      }
+
+      #reserved {
+        width: 1264px;
+        text-align: center;
+        table-layout: fixed;
+        text-overflow: ellipsis;
+        overflow:hidden;
+        white-space: nowrap;
+      }
+        #t4-col {
+        margin-top:15px;
+        width: 1264px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: #A58D7F;
+        color: #F0EDE5;
+      }
+      #reserved tr {
+        display: block;
+        width: 1264px;
+      }
+      #reserved #t4-col {
+        display: block;
+        width: 1264px;
+      }
+      #reserved tbody {
+        color: #48494B;
+      }
+      #reserved td.library_id {
+        width:10%;
+      }
+      #reserved td.bookname {
+      width:51%;
+      }
+      #reserved td.authors {
+        width:15%;
+      }
+      #reserved td.publisher {
+        width:13%;
+      }
+      #reserved td.publish_year {
+        width:11%;
+      }
+
+
+      #submit {
+        background-color: #F5B895;
+        margin-left: 600px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="menubar">
+      <a href="main.html">Main</a>
+      <a href="equipment_management.html">Equip-Mgt</a>
+      <a href="book_management.html">Book-Mgt</a>
+      <a href="reserve_loan_management.html">Reserve-Mgt</a>
+    </div>
+    <div class="main">
+      <h1>예약 도서 관리</h1>
+
+    <h2 >예약 신청 내역</h2>
+
+    <div class="reserve-apps">
+    <table id = "reserve-app" style = "display:block;">
+      <thead>
+        <tr id = "t1-col" style="table-layout: fixed;">
+          <td style="width:10%;">도서관</td>
+          <td style="width:51%;">제목</td>
+          <td style="width:10%;">신청 날짜</td>
+          <td style="width:11%;">신청자 아이디</td>
+          <td style="width:11%;">신청자 이름</td>
+          <td style="width:5%;">예약 처리</td>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    </div>
+
+    <div class="reserved">
+      <h2 id = 'reserved-h2' style="margin-top:10px;">예약 처리 내역</h2>
+      <table id = "reserved" style = "display:block;">
+        <thead>
+          <tr id = "t4-col" style="table-layout: fixed;">
+            <td style="width:130px;">도서관</td>
+            <td style="width:635px;">제목</td>
+            <td style="width:186px;">저자</td>
+            <td style="width:160px;">출판사</td>
+            <td style="width:140px;">출판 년도</td>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <table id = "reserve-mgt" style="display: none;">
+      <thead>
+        <tr id = "t2-col" style="table-layout: fixed;">
+          <td style="width:10%;">도서관</td>
+          <td style="width:10%;">ISBN</td>
+          <td style="width:50%;">제목</td>
+          <td style="width:10%;">저자</td>
+          <td style="width:7%;">출판사</td>
+          <td style="width:5%;">출판년도</td>
+          <td style="width:3%;">KDC</td>
+          <td style="width:3%;">설명</td>
+          <td style="width:3%;">도서 신청</td>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+
+    <div id="recommend" style="display: none">
+      <div class = 'rec-title' style="color: #84898C; font-size: x-large; font-weight:bold; margin-left:15px;"><p>추천 도서</p></div>
+    <table id = "recommend-book">
+      <thead>
+        <tr id = "t3-col" style="table-layout: fixed;">
+          <td style="width:2%;">순위</td>
+          <td style="width:53%;">제목</td>
+          <td style="width:20%;">저자</td>
+          <td style="width:10%;">출판사</td>
+          <td style="width:4%;">출판년도</td>
+          <td style="width:3%;">KDC</td>
+          <td style="width:3%;">설명</td>
+          <td style="width:4%;">도서 신청</td>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+      </div>
+
+      <div class="submit">
+        <input type="button" id = "submit" name="submit" value="도서 신청" onclick = "new_books();" style="display:none;"></a>
+      </div>
+
+  </div>
+  <script type="text/javascript">
+  var count = 0;
+  var html = "";
+  var possible_books = 0;
+  var remain_books = 0;
+  var list_count = 0;
+  var library_books = 0;
+  var lists = new Array();
+  async function show_data () {
+  var reserveTable = document.getElementById('reserve-app');
+
+  const result = await fetch("http://ec2-13-124-1-210.ap-northeast-2.compute.amazonaws.com/bookReservs?page=1"
+  ).then((response) => response.json());
+  var list = new Array();
+  var status_r = "";
+    for(var i = 0; i < result.totalItems; i++) {
+      if(result.items[i].status === 0) {
+        status_r = "미처리";
+      }
+      else {
+        status_r = "처리";
+      }
+      for(var j = 0; j <result.items[i].ReservedBooks.length; j++) {
+
+      list.push({library_id : result.items[i].SmLibrary.name, bookname: result.items[i].ReservedBooks[j].bookName, reserve_day: result.items[i].ReservedBooks[j].createdAt,
+        reserver_id: result.items[i].User.id, reserver_name : result.items[i].User.name, state : result.items[i].status});
+
+      html += '<tr><td class = "library_id">' + list[list_count].library_id + '</td><td class = "bookname">' + list[list_count].bookname + '</td><td class = "reserve-day">'
+      + list[list_count].reserve_day + '</td><td class = "reserver-id">' + list[list_count].reserver_id + '</td><td class = "reserver_name">' + list[list_count].reserver_name +
+      '</td><td class = "state"><input type = "button" onclick = "delete_row(' + (list_count + 1) + '); reserve_mgt(' + result.items[i].SmLibrary.id + ',' + result.items[i].id + ' ,' + result.items[i].ReservedBooks.ISBN + ');" value = "' +status_r +'">' + '</td></tr>';
+      list_count++;
+    }
+  }
+    reserveTable.innerHTML += html;
+    document.getElementById('t1-col').style.display = 'block';
+    document.getElementById('reserve-app').style.display = 'block';
+    document.getElementById('reserved').style.display = 'block';
+    document.getElementById('reserved-h2').style.display = 'block';
+    document.getElementById('reserve-mgt').style.display = 'none';
+    document.getElementById('recommend').style.display = 'none';
+    document.getElementById('submit').style.display = 'none';
+    document.querySelector('h2').innerHTML='예약 신청 내역';
+}
+show_data();
+
+  var library_books = 0;
+  async function reserve_mgt(lib_id, id, isbn) {
+
+
+
+    var reserveMgtTable = document.getElementById('reserve-mgt');
+    var recommendTable = document.getElementById('recommend-book');
+    var reservedTable = document.getElementById('reserved');
+    if(reserveMgtTable.rows.length > 1) {
+    reserveMgtTable.deleteRow(1);
+  }
+    for (var i = recommendTable.rows.length - 1; i > 0; i--) {
+      recommendTable.deleteRow(i);
+    }
+    const result1 = await fetch("http://ec2-13-124-1-210.ap-northeast-2.compute.amazonaws.com/bookReservs/" + id
+  ).then((response) => response.json());
+    var html1 = "";
+    var index = 0;
+
+    for (var i = 0; i < result1.ReservedBooks.length; i++) {
+      if(result1.ReservedBooks[i].ISBN === isbn)
+         index = i;
+    }
+
+      html1 += ('<tr><td class = "library_id">' + result1.SmLibrary.name + '</td><td class = isbn>' + result1.ReservedBooks[index].ISBN +'</td><td class = "bookname">'
+       + result1.ReservedBooks[index].bookName +'</td><td class = "authors">' + result1.ReservedBooks[index].authors +'</td><td class = "publisher">' +
+       result1.ReservedBooks[index].publisher + '</td><td class = "publish_year">' + result1.ReservedBooks[index].publicationYear + '</td><td class = "KDC">' +
+       result1.ReservedBooks[index].classNo + '</td><td class = "description"><a type = "button" onclink = "show_description(' + result1.ReservedBooks[index].ISBN + ')">선택</a></td>' +
+      '<td class = "check_books"> <input type = "checkbox" value =' + result1.ReservedBooks[index].bookName + ' class = "check" checked = "true"></a></td></tr>');
+
+    reserveMgtTable.innerHTML += html1;
+
+
+
+    const result2 = await fetch("http://ec2-13-124-1-210.ap-northeast-2.compute.amazonaws.com/simBooks/" + result1.ReservedBooks[index].ISBN + "?limit=10"
+  ).then((response) => response.json());
+
+    var html2 = "";
+    list_s = new Array();
+    for(var index = 0; index < 10; index++) {
+      list_s.push({rank: (index+1), bookname: result2.similarBooks[index].bookName, authors: result2.similarBooks[index].authors,
+      publisher:  result2.similarBooks[index].publisher, publish_year:  result2.similarBooks[index].publicationYear, classNo: result2.similarBooks[index].classNo,
+      img: result2.similarBooks[index].bookImageURL, description: result2.similarBooks[index].description});
+
+      html2 += ('<tr><td class = "rank">' + list_s[index].rank + '</td><td class = "bookname">' +list_s[index].bookname + '</td><td class = authors>'
+      + list_s[index].authors + '</td><td class = "publisher">' + list_s[index].publisher +'</td><td class = "publish_year">' + list_s[index].publish_year + '</td><td class = "KDC">'
+      + list_s[index].classNo + '</td><td class = "description">' +
+      '<a type = "button" onclink = "show_description(' + result2.similarBooks[index].ISBN + ')">선택</a></td><td class = "check_books"><input type = "checkbox" class = "check" onclick = "add_table(' +
+      '\'' + result1.SmLibrary.name + '\', '  + index + ');"></a></td></tr>');
+
+
+
+    }
+recommendTable.innerHTML += html2;
+
+    var html4 = "";
+    html4 += ('<tr><td class = "library_id">' + result1.SmLibrary.name + '</td><td class = "bookname">' + result2.targetBook.bookName + '</td><td class = "authors">' +
+    result2.targetBook.authors + '<td><td class = "publisher">' + result2.targetBook.publisher + '</td><td class = "publish_year">' + result2.targetBook.publicationYear
+    + '</td></tr>');
+    reservedTable.innerHTML += html4;
+
+
+
+
+    const result3 = await fetch("http://ec2-13-124-1-210.ap-northeast-2.compute.amazonaws.com/smtLibrs/" + lib_id + "/books?page=1&limit=10&sort_by=loanCnt&order_by=DESC"
+  ).then((response) => response.json());
+    possible_books = result3.totalItems;
+
+
+    const result4 = await fetch("http://ec2-13-124-1-210.ap-northeast-2.compute.amazonaws.com/smtLibrs/" + lib_id + "?analysisInfoYN=N"
+  ).then((response) => response.json());
+
+    remain_books = result4.maxNumOfBooks - possible_books;
+
+
+    document.getElementById('reserve-app').style.display = 'none';
+    document.getElementById('reserved').style.display = 'none';
+    document.getElementById('reserved-h2').style.display = 'none';
+    document.getElementById('reserve-mgt').style.display = 'block';
+    document.getElementById('recommend').style.display = 'block';
+    document.getElementById('submit').style.display = 'block';
+    document.querySelector('h2').innerHTML='예약 도서 관리';
+
+
+
+  };
+
+  function add_table(library_id, index) {
+    var reservedTable = document.getElementById('reserved');
+    html5 = ('<tr><td class = "library_id">' + library_id + '</td><td class = "bookname">' + list_s[index].bookname + '</td><td class = "authors">' +
+    list_s[index].authors + '<td><td class = "publisher">' + list_s[index].publisher + '</td><td class = "publish_year">' + list_s[index].publish_year
+    + '</td></tr>');
+    reservedTable.innerHTML += html5;
+  };
+
+
+  function new_books() {
+    console.log(remain_books);
+
+    var count = 0;
+    var check_arr = document.querySelectorAll('.check')
+    for (var i = 0; i < check_arr.length; i++) {
+      if(check_arr[i].checked === true) count++;
+    }
+
+    console.log(count);
+    if(count > remain_books) {
+      alert('비치 가능한 도서를 초과했습니다.\n' + '비치 가능한 도서: ' + remain_books + '권\n');
+      for (var i = 0; i < check_arr.length; i++) {
+        check_arr[i].checked = false;
+    }
+    check_arr[0].checked = true;
+
+    for(var i = count; i>1; i--) {
+      document.getElementById('reserved').deleteRow(i);
+    }
+
+  }
+    else {
+      var alter_string = '총 ' + count + '권의 도서를 신청합니다.\n';
+       // for(var i=0;i<count; i++) { alter_string += check_arr[i].value + '\n'; }
+      alert(alter_string);
+
+      document.getElementById('t1-col').style.display = 'block';
+      document.getElementById('reserve-app').style.display = 'block';
+      document.getElementById('reserved').style.display = 'block';
+      document.getElementById('reserve-mgt').style.display = 'none';
+      document.getElementById('recommend').style.display = 'none';
+      document.getElementById('submit').style.display = 'none';
+      document.querySelector('h2').innerHTML='예약 신청 내역';
+    }
+  };
+
+  function delete_row(index) {
+    document.getElementById('reserve-app').deleteRow(index);
+  }
+
+
+  function show_description(isbn) {
+
+
+  };
+
+
+
+
+  </script>
+  </body>
+
+</html>

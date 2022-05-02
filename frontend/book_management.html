@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>스마트 도서관 관리 시스템 도서 관리 창</title>
+    <meta charset="utf-8">
+    <style>
+    body, html {
+      height:100%;
+      margin:0;
+    }
+    body {
+      background-color: #F0EDE5;
+    }
+      .menubar {
+        overflow: hidden;
+        background-color: #84898C;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+      }
+      .menubar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+      .menubar a:hover {
+        background-color: #B5C7D3;
+        color: #84898C;
+      }
+      .main {
+        padding-top: 50px;
+      }
+      h1 {
+        text-align:left;
+        padding-top: 24px;
+        margin-left: 15px;
+        color: #A58D7F;
+        border-bottom: 2px solid '#F5B895';
+      }
+      h2 {
+        text-align: center;
+        padding-right: 35px;
+        color: #84898C;
+      }
+      #canvas {
+        margin-left :100px;
+      }
+      .smart-library-id {
+        float: center;
+        padding: 8px 10px;
+        margin-left:495px;
+        margin-bottom: 10px;
+      }
+
+      #books-table #col {
+        width: 1263px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: #A58D7F;
+        color: #F0EDE5;
+      }
+      #books-table {
+        width: 100%;
+        text-align: center;
+        table-layout: fixed;
+        text-overflow: ellipsis;
+        overflow:hidden;
+        white-space: nowrap;
+      }
+      #books-table thead{
+        display: block;
+        width: 100%;
+      }
+      #books-table tbody {
+        width:100%;
+        display: block;
+        color: #48494B;
+      }
+      tr {
+        display: block;
+        width: 100%;
+      }
+      #books-table #col {
+        display: block;
+        width: 1264px;
+      }
+      td.isbn {
+        width: 147px;
+      }
+      td.bookname {
+        width: 660px;
+      }
+      td.publisher {
+        width:148px;
+      }
+      td.placedat{
+        width: 111px;
+      }
+      td.loancnt {
+        width:72px;
+      }
+      td.lastloan {
+        width: 111px;
+      }
+
+      .paging-nav {
+        text-align:right;
+        padding-top:2px;
+
+}
+
+  .paging-nav a {
+
+    margin:auto 1px;
+    text-decoration:none;
+    display: inline-block;
+    padding:1px 7px;
+    background:#91b9e6;
+    color:white;
+    border-radius:3px;
+
+  }
+  #pagination {
+    margin-top: 15px;
+    margin-bottom:10px;
+    color: #A58D7F;
+  }
+
+
+  .paging-nav .selected-page {
+    background:#187ed5;
+    font-weight:bold;
+  }
+  .pagination a {
+    background-color: #A58D7F;
+    color:#F0EDE5;
+    padding:5px;
+    margin-left: 1100px;
+  }
+    </style>
+  </head>
+  <body>
+    <div class="menubar">
+      <a href="main.html">Main</a>
+      <a href="equipment_management.html">Equip-Mgt</a>
+      <a href="book_management.html">Book-Mgt</a>
+      <a href="reserve_loan_management.html">Reserve-Mgt</a>
+    </div>
+    <div class="main">
+    <h1>도서 관리</h1>
+
+    <h2>보유 도서 현황</h2>
+
+    <div class="pagination">
+      <a type="button" id = "select-btn" name = "chart" onclick = "re(document.getElementById('library_id').value, this.name, 1)">비치 도서 목록</a>
+    </div>
+
+<div class="select-library">
+      <select class="smart-library-id" id = "library_id" name="library-id" onchange="re(this.value, document.getElementById('select-btn').name, 0)">
+        <option value="0" selected>도서관 선택</option>
+        <option id = 'l-id' value="1">1. 충정로역사점</option>
+        <option id = 'l-id' value="2" >2. 중림동주민센터점</option>
+        <option id = 'l-id' value="3" >3. 서울시교육청 남산도서관점</option>
+        <option id = 'l-id' value="4" >4. 금호역사점</option>
+        <option id = 'l-id' value="5" >5. 옥수역사점</option>
+        <option id = 'l-id' value="6" >6. 상왕십리역사점</option>
+        <option id = 'l-id' value="7" >7. 광진정보도서관점</option>
+        <option id = 'l-id' value="8" >8. 망우역사점</option>
+        <option id = 'l-id' value="9" >9. 용마역사점</option>
+        <option id = 'l-id' value="10" >10. 중화역사점</option>
+        <option id = 'l-id' value="11" >11. 고려대역사점</option>
+        <option id = 'l-id' value="12" >12. 석계역사점</option>
+        <option id = 'l-id' value="13" >13. 노원구평생학습관점</option>
+        <option id = 'l-id' value="14" >14. 연신내역사점</option>
+        <option id = 'l-id' value="15" >15. 불광역사점</option>
+        <option id = 'l-id' value="16" >16. 역촌역사점</option>
+        <option id = 'l-id' value="17" >17. 아현역사점</option>
+        <option id = 'l-id' value="18" >18. 홍제역사점</option>
+        <option id = 'l-id' value="19" >19. 독립문역사점</option>
+        <option id = 'l-id' value="20" >20. 양천도서관점</option>
+        <option id = 'l-id' value="21" >21. 오목교역사점</option>
+        <option id = 'l-id' value="22" >22. 마곡역사점</option>
+        <option id = 'l-id' value="23" >23. 까치산역사점</option>
+        <option id = 'l-id' value="24" >24. 우장산역사점</option>
+        <option id = 'l-id' value="25" >25. 강서구청 휴게쉼터점</option>
+        <option id = 'l-id' value="26" >26. 천왕역사점</option>
+        <option id = 'l-id' value="27" >27. 신도림역사점</option>
+        <option id = 'l-id' value="28" >28. 개봉역사점</option>
+        <option id = 'l-id' value="29" >29. 여의도역사점</option>
+        <option id = 'l-id' value="30" >30. 영동포 제1 스포츠센터</option>
+        <option id = 'l-id' value="31" >31. 영동포 제2 스포츠센터</option>
+        <option id = 'l-id' value="32" >32. 신대방삼거리역사점</option>
+        <option id = 'l-id' value="33" >33. 총신대입구역사점</option>
+        <option id = 'l-id' value="34" >34. 장승배기역사점</option>
+        <option id = 'l-id' value="35" >35. 노들역사점</option>
+        <option id = 'l-id' value="36" >36. 신림역사점</option>
+        <option id = 'l-id' value="37" >37. 내방역사점</option>
+        <option id = 'l-id' value="38" >38. 양재역사점</option>
+        <option id = 'l-id' value="39" >39. 강남구청역사점</option>
+        <option id = 'l-id' value="40" >40. 논현1동 주민센터점</option>
+        <option id = 'l-id' value="41" >41. 삼성2동 주민센터점</option>
+        <option id = 'l-id' value="42" >42. 청담역사점</option>
+        <option id = 'l-id' value="43" >43. 잠실나루역사점</option>
+        <option id = 'l-id' value="44" >44. 방이역사점</option>
+      </select>
+</div>
+      <div id = 'books-chart' style="width:80%; display:none">
+      <canvas id="canvas" height="200"></canvas>
+      </div>
+
+      <table id = "books-table" style=" display:none">
+        <thead>
+          <tr id = "col" style="table-layout: fixed; display:none">
+            <td style="width:12%;">ISBN</th>
+            <td style="width:54%;">제목</td>
+            <td style="width:12%;">출판사</td>
+            <td style="width:9%;">비치 날짜</td>
+            <td style="width:4%;">대출 횟수</td>
+            <td style="width:9%;">최근 대출 날짜</td>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+
+      <div id="pagination" style="text-align:center"></div>
+
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <script type="text/javascript" src = "Chart.js"></script>
+      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
+      <script src="pagination.js"></script>
+      <script src = "jquery-3.5.1.min.js"></script>
+
+    <script>
+
+    function re(id, name, change) {
+      var myChart = null;
+      function getData(url, cb) {
+    fetch(url)
+      .then(response => response.json())
+      .then(result => cb(result));
+  }
+
+      if(name === 'chart' && change === 0 || name ==='table' && change === 1) {
+
+
+        if(change === 0) {
+        document.getElementById('books-chart').style.display = 'block';
+        document.getElementById('books-table').style.display = 'none';
+        document.getElementById('col').style.display = 'none';
+        document.getElementById('select-btn').innerText = '비치 도서 목록';
+        }
+
+        else  {
+          document.getElementById('books-chart').style.display = 'block';
+          document.getElementById('books-table').style.display = 'none';
+          document.getElementById('col').style.display = 'none';
+          document.getElementById('select-btn').name = "chart";
+          document.getElementById('select-btn').innerText = '비치 도서 목록';
+          
+        }
+
+    console.log(id);
+    var url = 'http://ec2-13-124-1-210.ap-northeast-2.compute.amazonaws.com/smtLibrs/' + id + '?analysisInfoYN=Y';
+
+    getData(url, (data) => {
+      var booksAry = new Array();
+
+      var total_books = 0;
+      for (var i = 0; i < 10; i++) {
+        booksAry[i] = data.analysisInfo[i].count;
+        total_books = total_books + booksAry[i];
+      }
+
+        function drawChart(objChart,data){
+      if(myChart!==null){
+          myChart.destroy();
+      }
+      // Get the context of the canvas element we want to select
+      var ctx = objChart.getContext("2d");
+      myChart = new Chart(ctx, options);
+  }
+  var objChart = document.getElementById('canvas');
+  var options = {
+   type: 'bar',
+  data: {
+  labels: ["총류", "철학", "종교", "사회과학", "자연과학", "기술과학", "예술", "언어", "문학", "역사"],
+  datasets: [{
+      label: '# of books',
+      data: booksAry,
+      borderColor: "rgba(101, 141, 198, 1)",
+      backgroundColor: "rgba(101, 141, 198, 0.5)",
+      fill: false,
+  }]
+  },
+  options: {
+  responsive: true,
+  title: {
+      display: true,
+      text: data.name + '의 보유 도서: ' + total_books + ' / ' + data.maxNumOfBooks + '권'
+
+  },
+  tooltips: {
+      mode: 'nearest',
+      intersect: false,
+      callbacks: {
+          title: function(tooltipItems, data) {
+              return data.labels[tooltipItems.datasetIndex];
+          }
+      }
+  },
+  hover: {
+      mode: 'nearest',
+      intersect: true
+  },
+  scales: {
+      xAxes: [{
+          display: true,
+          ticks: {
+              autoSkip: false
+          }
+      }],
+      yAxes: [{
+          display: true,
+          ticks: {
+              suggestedMin: 0,
+          },
+      }]
+  }
+  }
+};
+drawChart(objChart,data);
+    // myChart = new Chart(document.getElementById("canvas"), {
+    // type: 'bar',
+    // data: {
+    // labels: ["총류", "철학", "종교", "사회과학", "자연과학", "기술과학", "예술", "언어", "문학", "역사"],
+    // datasets: [{
+    //     label: '# of books',
+    //     data: booksAry,
+    //     borderColor: "rgba(101, 141, 198, 1)",
+    //     backgroundColor: "rgba(101, 141, 198, 0.5)",
+    //     fill: false,
+    // }]
+    // },
+    // options: {
+    // responsive: true,
+    // title: {
+    //     display: true,
+    //     text: data.name + '의 보유 도서: ' + total_books + ' / ' + data.maxNumOfBooks + '권'
+    //
+    // },
+    // tooltips: {
+    //     mode: 'nearest',
+    //     intersect: false,
+    //     callbacks: {
+    //         title: function(tooltipItems, data) {
+    //             return data.labels[tooltipItems.datasetIndex];
+    //         }
+    //     }
+    // },
+    // hover: {
+    //     mode: 'nearest',
+    //     intersect: true
+    // },
+    // scales: {
+    //     xAxes: [{
+    //         display: true,
+    //         ticks: {
+    //             autoSkip: false
+    //         }
+    //     }],
+    //     yAxes: [{
+    //         display: true,
+    //         ticks: {
+    //             suggestedMin: 0,
+    //         },
+    //     }]
+    // }
+    // }
+    // });
+
+
+
+});
+
+////
+// if(change === 0) {
+// document.getElementById('books-chart').style.display = 'block';
+// document.getElementById('books-table').style.display = 'none';
+// document.getElementById('col').style.display = 'none';
+// }
+//
+// else  {
+//   document.getElementById('books-chart').style.display = 'block';
+//   document.getElementById('books-table').style.display = 'none';
+//   document.getElementById('col').style.display = 'none';
+//   document.getElementById('select-btn').name = "chart";
+// }
+/////
+}
+
+else {
+    var bookTable = document.getElementById('books-table');
+    var row_num = bookTable.rows.length;
+    var tr_num = row_num - 1;
+    console.log(tr_num);
+    if(tr_num >= 0) {
+    for (var i = tr_num; i > 0; i--) {
+      bookTable.deleteRow(i);
+    }
+  }
+
+  var url = 'http://ec2-13-124-1-210.ap-northeast-2.compute.amazonaws.com/smtLibrs/' + id + '/books?page=1&sort_by=bookName&order_by=ASC';
+
+  function getData(url, cb) {
+    fetch(url)
+    .then(response => response.json())
+    .then(result => cb(result));
+}
+var list = [];
+getData(url, (data) => {console.log({data})
+
+
+for (var i = 0; i < data.totalItems; i++) {
+  var limited_bookname = data.items[i].bookName;
+  if(limited_bookname.length > 50) {
+    limited_bookname = limited_bookname.substr(0, 50) + "...";
+  }
+
+  var limited_publisher = data.items[i].publisher;
+  if(limited_publisher.length > 10) {
+    limited_publisher = limited_publisher.substr(0, 10) + "...";
+  }
+
+  list.push({ISBN: data.items[i].ISBN, bookName: limited_bookname, publisher: limited_publisher,
+    placedAt: data.items[i].placedAt.split('T')[0], loanCnt: data.items[i].loanCnt, lastLoanedAt: data.items[i].lastLoanedAt.split('T')[0]});
+
+}
+var pageCount = 10;
+var blockCount = 10;
+var totalPage = Math.ceil(list.length / pageCount);
+var totalBlock = Math.ceil(totalPage/blockCount);
+var pagination = document.getElementById('pagination');
+var booksTable = document.getElementById('books-table').querySelector('tbody');
+
+var renderTableAndPagination = function(page = 1) {
+  renderTable(page);
+  renderPagination(page);
+};
+
+var renderTable = function(page) {
+  var startNum = (pageCount*(page - 1));
+  var endNum = ((pageCount*page) >= list.length) ? list.length:(pageCount*page);
+
+  var html = "";
+  for(var index = startNum; index < endNum; index++) {
+    html += '<tr><td class = "isbn">' + list[index].ISBN + '</td><td class = "bookname">' + list[index].bookName + '</td><td class = "publisher">'
+    + list[index].publisher + '</td><td class = "placedat">'+ list[index].placedAt + '</td><td class = "loancnt">'+ list[index].loanCnt + '</td><td class = "lastloan">'+ list[index].lastLoanedAt + '</td></tr>';
+
+  }
+  booksTable.innerHTML = html;
+};
+var renderPagination = function(page) {
+  var block = Math.floor((page-1)/blockCount)+1;
+  var startPage = ((block-1)*blockCount)+1;
+  var endPage = ((startPage + blockCount - 1) > totalPage) ? totalPage : (startPage + blockCount - 1);
+
+  var paginationHTML = "";
+  if(page !== 1) {
+    paginationHTML += "<a style = 'cursor:pointer' class = 'first_page'>First...</a>";
+  }
+  if(block !== 1) {
+    paginationHTML += "<a style = 'cursor:pointer' class = 'back_page'>Prev</a> ";
+  }
+
+  for(var index = startPage; index <= endPage; index++) {
+    if(parseInt(page) === parseInt(index)) {
+      paginationHTML += "| <a style = 'color: #F5B895'>" + index + "</a> |"; }
+    else {
+      paginationHTML += "| <a style = 'cursor:pointer' class = 'go_page' data-value ='" + index + "'>" + index + "</a> |";
+    }}
+
+  if(block < totalBlock) paginationHTML += "<a style = 'cursor:pointer' class = 'next_page'>  Next</a>";
+  if(page < totalPage) paginationHTML += "<a style = 'cursor:pointer' class = 'last_page'>  ...Last</a>";
+
+  pagination.innerHTML = paginationHTML;
+  addEventPagination(startPage, endPage);
+};
+
+var addEventPagination = function(startPage, endPage) {
+  if(!!document.querySelector(".first_page")) {
+    document.querySelector(".first_page").addEventListener('click', () => {
+      renderTableAndPagination(1);
+    });
+  }
+
+  if(!!document.querySelector(".back_page")) {
+    document.querySelector(".back_page").addEventListener('click', () => {
+      renderTableAndPagination(startPage-1);
+    });
+  }
+
+  if(!!document.querySelector(".next_page")) {
+    document.querySelector(".next_page").addEventListener('click', () => {
+      renderTableAndPagination(endPage+1);
+    });
+  }
+
+  if(!!document.querySelector(".last_page")) {
+    document.querySelector(".last_page").addEventListener('click', () => {
+      renderTableAndPagination(totalPage);
+    });
+  }
+
+
+    var arr = document.querySelectorAll(".go_page");
+    arr.forEach(goPage => {
+      goPage.addEventListener('click', e => {
+        renderTableAndPagination(parseInt(e.target.getAttribute('data-value')));
+      });
+    });
+
+
+
+};
+renderTableAndPagination();
+
+
+});
+if(change === 0) {
+document.getElementById('books-chart').style.display = 'none';
+document.getElementById('books-table').style.display = 'block';
+document.getElementById('col').style.display = 'block';
+document.getElementById('select-btn').innerText = '비치 현황 그래프';
+}
+else  {
+  document.getElementById('books-chart').style.display = 'none';
+  document.getElementById('books-table').style.display = 'block';
+  document.getElementById('col').style.display = 'block';
+  document.getElementById('select-btn').name = "table";
+  document.getElementById('select-btn').innerText = '비치 현황 그래프';
+}
+
+}
+}
+
+
+
+
+// re(id);
+    </script>
+
+    </div>
+  </div>
+  </body>
+</html>
